@@ -37,7 +37,7 @@ const NavBar = styled.div`
     }
 
     @media (min-width: 860px){
-        padding: 0.5rem 8.5rem;
+        padding: 0.5rem 1vw;
         justify-content: space-between;
         .hamburger {
             display: none;
@@ -69,6 +69,9 @@ const NavBar = styled.div`
             font-weight: 700;
         }
 
+    }
+    @media (min-width: 1130px){
+        padding: 0.5rem 10vw;
     }
 `;
 
