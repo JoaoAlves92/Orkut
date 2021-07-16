@@ -20,10 +20,10 @@ import AddIcon from '@material-ui/icons/Add';
 export const ProfileSideBar = () => {
   return (
     <Box>
-          <img src="https://github.com/JoaoAlves92.png"/>
+          <img src="https://github.com/JoaoAlves92.png" width="300px" height="300px"/>
           <div style={{ borderTop: '1px solid #ECF2FA', borderBottom: '1px solid #ECF2FA', marginTop: '1rem', paddingTop: '8px', paddingBottom: '8px'}}>
-            <h2 style={{ color: '#2E7BB4', fontSize: '14px' }}>João Marangoni</h2><br></br>
-            <p style={{ color: '#999999', fontSize: '12px'}}>Masculino,<br></br>solteiro(a),<br></br>Brasil</p>
+            <h2 style={{ color: '#2E7BB4', fontSize: '1rem' }}>João Marangoni</h2><br></br>
+            <p style={{ color: '#999999', fontSize: '0.9rem'}}>Masculino,<br></br>solteiro(a),<br></br>Brasil</p>
           </div>
 
           <div style={{ color: '#2E7BB4', marginTop: '1rem', lineHeight: '0.5rem'}}>
@@ -47,9 +47,9 @@ const WelcomeBox = () => {
     <Box>
           <p style={{ color: '#333333', fontSize: '28px', fontWeight: 'normal' }}>Bem vindo(a), João</p>
           <p style={{ fontSize: '14px', marginTop: '8px', color: '#999999' }}><span style={{ fontWeight: 'bold', fontSize: '16px' }}>Sorte de hoje:</span> O melhor profeta do futuro é o passado</p> <br></br>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <ItemPerfil>
-              <p>Recados</p><span style={{ color: '#2E7BB4'}}>0</span>
+              <p>Recados</p><span style={{ color: '#2E7BB4' }}>0</span>
             </ItemPerfil>
             <ItemPerfil>
               <p>Fotos</p><span style={{ color: '#2E7BB4'}}>0</span>
