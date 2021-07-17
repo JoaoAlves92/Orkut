@@ -7,12 +7,6 @@ import CardPessoa from '../src/components/CardPessoa';
 import Botao from '../src/components/Botao';
 import Input from '../src/components/Input';
 import ItemPerfil from '../src/components/ItemPerfil';
-import PersonIcon from '@material-ui/icons/Person';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import CameraAltIcon from '@material-ui/icons/CameraAlt';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
-import AddIcon from '@material-ui/icons/Add';
 
 export const ProfileSideBar = () => {
   return (
@@ -125,9 +119,11 @@ const AmizadesBox = ({dados}) => {
   return (
     <Box>
           <h3 style={{ fontWeight: 'bold', fontSize: '16px' }}>Meus amigos <span style={{ color: '#2E7BB4' }}>({dados.length})</span></h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {dados.map( pessoa => (
               <CardPessoa key={pessoa.login} imagem={pessoa.avatar_url} nome={pessoa.login}/>
           ))}
+          </div>
           <p style={{ fontWeight: 'bold', fontSize: '14px', color: '#2E7BB4', marginTop: '1rem'}}>Ver todos</p>
     </Box>
   );

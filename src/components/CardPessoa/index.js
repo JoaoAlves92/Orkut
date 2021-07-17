@@ -15,7 +15,8 @@ const CardPessoaStyle = styled.div`
         word-wrap: break-word;
     }
     .imagem {
-        width: 82px;
+        min-width: 82px;
+        max-width: 84px;
         height: 102px;
         border-radius: 8px;
         filter: brightness(70%);
