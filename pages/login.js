@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Logo from '../src/components/Logo';
+import axios from 'axios';
 
 const Estilo = styled.div`
     width: 100%;
@@ -118,6 +119,7 @@ const Estilo = styled.div`
 export default function LoginScreen() {
   const router = useRouter(); 
   const [usuario, setUsuario] = useState('');
+  const [senha, setSenha] = useState('');
 
   return (
     <Estilo as="main">
@@ -133,18 +135,31 @@ export default function LoginScreen() {
         <section className="formArea">
           <form className="box" onSubmit={(e) => {
               e.preventDefault()
-              router.push('/')
+              axios.post('http://localhost:3002/auth/autenticar',{
+                email: usuario,
+                senha: senha
+              })
+              //router.push('/')
           }}>
             <p>
-              Acesse agora mesmo com seu email !
+              Acesse agora mesmo com seu email!
             </p>
             <input
-                placeholder="Usuário"
+                placeholder="Email"
                 value={usuario}
                 onChange={(e) => {
                   setUsuario(e.target.value)
                 }}
             />
+            <p style={{ visibility: 'hidden' }}>mensagem escondida</p>
+            <input
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => {
+                  setSenha(e.target.value)
+                }}
+            />
+            <p style={{ visibility: 'hidden' }}>mensagem escondida</p>
             <button type="submit">
               Login
             </button>

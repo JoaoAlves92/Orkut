@@ -45,10 +45,10 @@ export const ProfileSideBar = () => {
   );
 }
 
-const WelcomeBox = () => {
+const WelcomeBox = ({usuario}) => {
   return (
     <Box>
-          <p style={{ color: '#333333', fontSize: '28px', fontWeight: 'normal' }}>Bem vindo(a), João</p>
+          <p style={{ color: '#333333', fontSize: '28px', fontWeight: 'normal' }}>Bem vindo(a), {usuario}</p>
           <p style={{ fontSize: '14px', marginTop: '8px', color: '#999999' }}><span style={{ fontWeight: 'bold', fontSize: '16px' }}>Sorte de hoje:</span> O melhor profeta do futuro é o passado</p> <br></br>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <ItemPerfil>
@@ -142,6 +142,7 @@ const ComunidadesBox = ({comunidades}) => {
 }
 
 export default function Home() {
+  const usuario = 'João'
   const [dados, setDados] = useState([])
   const [comunidades, setComunidade] = useState([])
 
@@ -199,7 +200,7 @@ export default function Home() {
       </div>
 
       <div style={{ gridArea: 'Conteudo' }}>
-        <WelcomeBox/>
+        <WelcomeBox usuario={usuario}/>
          <br></br>
         <Box>
           <p style={{ color: '#333333', fontSize: '18px', fontWeight: 'normal' }}>O que você deseja fazer?</p><br></br>
