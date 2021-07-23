@@ -212,7 +212,7 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
   try {
     const cookies = parseCookies(context)
-    const user = JSON.parse(cookies.USER)
+    const user = cookies.USER
 
     if (cookies.TOKEN) {
       return {
