@@ -215,10 +215,11 @@ export async function getServerSideProps(context) {
 
   if (cookies.TOKEN) {
     return {
-      props: {token: cookies.TOKEN, usuario: user} // will be passed to the page component as props
+      props: {token: cookies.TOKEN || null, usuario: user || null} // will be passed to the page component as props
     }
   } else {
     context.res.writeHead(302, { Location: '/login' });
     context.res.end();
+    return { props: {ok: false}
   }
 } 
