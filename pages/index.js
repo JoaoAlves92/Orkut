@@ -210,23 +210,18 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-
   try {
     const cookies = parseCookies(context)
     const user = JSON.parse(cookies.USER)
-    console.log("OLHA AQUII")
-    console.log(user)
-    console.log(user.nome)
 
     if (cookies.TOKEN) {
       return {
         props: {token: cookies.TOKEN, usuario: user} // will be passed to the page component as props
       }
-    } else {
-      context.res.writeHead(302, { Location: '/login' });
-      context.res.end();
     }
   } catch (erro) {
     console.log(erro)
+    context.res.writeHead(302, { Location: '/login' });
+    context.res.end();
   }
 }
