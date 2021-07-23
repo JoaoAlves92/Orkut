@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Logo from '../src/components/Logo';
 import axios from 'axios';
+import { setCookie } from 'nookies';
 
 const Estilo = styled.div`
     width: 100%;
@@ -133,11 +134,24 @@ export default function LoginScreen() {
         </section>
 
         <section className="formArea">
-          <form className="box" onSubmit={(e) => {
+          <form className="box" onSubmit={ async (e) => {
               e.preventDefault()
-              axios.post('http://localhost:3002/auth/autenticar',{
+              await axios.post('http://localhost:3002/auth/autenticar',{
                 email: usuario,
                 senha: senha
+              }).then(res => {
+                setCookie(null, 'TOKEN', res.data.token, {
+                  maxAge: 86400 * 7,
+                  path: '/'
+                })
+                setCookie(null, 'USER', JSON.stringify(res.data.user), {
+                  maxAge: 86400 * 7,
+                  path: '/'
+                })
+                console.log(res.data.user)
+                router.push('/')
+              }).catch(erro => {
+                console.log(erro)
               })
               //router.push('/')
           }}>
@@ -154,6 +168,7 @@ export default function LoginScreen() {
             <p style={{ visibility: 'hidden' }}>mensagem escondida</p>
             <input
                 placeholder="Senha"
+                type="password"
                 value={senha}
                 onChange={(e) => {
                   setSenha(e.target.value)

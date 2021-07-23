@@ -93,7 +93,7 @@ export default function CadastroScreen(){
                 />
                 <p style={{ visibility: 'hidden' }}>mensagem escondida</p>
                 <button type="submit">
-                    Login
+                    Cadastrar
                 </button>
             </form>
         </Estilo>

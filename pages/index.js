@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { parseCookies } from 'nookies';
 import MainGrid from '../src/components/MainGrid';
 import Box from '../src/components/Box'
 import Nav from '../src/components/Nav';
@@ -8,12 +9,12 @@ import Botao from '../src/components/Botao';
 import Input from '../src/components/Input';
 import ItemPerfil from '../src/components/ItemPerfil';
 
-export const ProfileSideBar = () => {
+export const ProfileSideBar = ({usuario}) => {
   return (
     <Box>
           <img src="https://github.com/JoaoAlves92.png" width="300px" height="300px"/>
           <div style={{ borderTop: '1px solid #ECF2FA', borderBottom: '1px solid #ECF2FA', marginTop: '1rem', paddingTop: '8px', paddingBottom: '8px'}}>
-            <h2 style={{ color: '#2E7BB4', fontSize: '1rem' }}>João Marangoni</h2><br></br>
+            <h2 style={{ color: '#2E7BB4', fontSize: '1rem' }}>{usuario.nome}</h2><br></br>
             <p style={{ color: '#999999', fontSize: '0.9rem'}}>Masculino,<br></br>solteiro(a),<br></br>Brasil</p>
           </div>
 
@@ -48,7 +49,7 @@ export const ProfileSideBar = () => {
 const WelcomeBox = ({usuario}) => {
   return (
     <Box>
-          <p style={{ color: '#333333', fontSize: '28px', fontWeight: 'normal' }}>Bem vindo(a), {usuario}</p>
+          <p style={{ color: '#333333', fontSize: '28px', fontWeight: 'normal' }}>Bem vindo(a), {usuario.nome}</p>
           <p style={{ fontSize: '14px', marginTop: '8px', color: '#999999' }}><span style={{ fontWeight: 'bold', fontSize: '16px' }}>Sorte de hoje:</span> O melhor profeta do futuro é o passado</p> <br></br>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <ItemPerfil>
@@ -141,8 +142,8 @@ const ComunidadesBox = ({comunidades}) => {
   );
 }
 
-export default function Home() {
-  const usuario = 'João'
+export default function Home(props) {
+  const usuario = props.usuario
   const [dados, setDados] = useState([])
   const [comunidades, setComunidade] = useState([])
 
@@ -196,7 +197,7 @@ export default function Home() {
     </Nav>
     <MainGrid>
       <div style={{ gridArea: 'Perfil' }} className="Profile">
-        <ProfileSideBar/>
+        <ProfileSideBar usuario={usuario}/>
       </div>
 
       <div style={{ gridArea: 'Conteudo' }}>
@@ -221,4 +222,21 @@ export default function Home() {
     </MainGrid>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const cookies = parseCookies(context)
+  const user = cookies.USER
+  console.log(cookies)
+  console.log('embaixo:')
+  console.log(JSON.parse(cookies.USER).nome)
+
+  if (cookies.TOKEN) {
+    return {
+      props: {token: cookies.TOKEN, usuario: JSON.parse(cookies.USER)} // will be passed to the page component as props
+    }
+  } else {
+    context.res.writeHead(302, { Location: '/login' });
+    context.res.end();
+  }
 }
