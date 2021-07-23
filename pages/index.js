@@ -174,21 +174,6 @@ export default function Home(props) {
           const comunidadesDoDato = resCompleta.data.allComunidades
           setComunidade(comunidadesDoDato)
       })
-
-    /* fetch('api/comunidades',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: {
-        JSON.stringify(...valores)
-      }
-    })
-    .then(async (response) => {
-      const retorno = await response.json()
-      setAlgo(retorno.comunidadeCriada)
-    }) */
-    
   }, [])
 
   return (
@@ -226,14 +211,14 @@ export default function Home(props) {
 
 export async function getServerSideProps(context) {
   const cookies = parseCookies(context)
-  const user = cookies.USER
-  console.log(cookies)
-  console.log('embaixo:')
-  console.log(JSON.parse(cookies.USER).nome)
+  const user = JSON.parse(cookies.USER)
+  console.log("OLHA AQUII")
+  console.log(user)
+  console.log(user.nome)
 
   if (cookies.TOKEN) {
     return {
-      props: {token: cookies.TOKEN, usuario: JSON.parse(cookies.USER)} // will be passed to the page component as props
+      props: {token: cookies.TOKEN, usuario: user} // will be passed to the page component as props
     }
   } else {
     context.res.writeHead(302, { Location: '/login' });
