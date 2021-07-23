@@ -220,6 +220,6 @@ export async function getServerSideProps(context) {
   } else {
     context.res.writeHead(302, { Location: '/login' });
     context.res.end();
-    return { props: {ok: false}
+    return { props: {ok: false}}
   }
 } 
