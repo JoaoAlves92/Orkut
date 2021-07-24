@@ -77,7 +77,7 @@ const WelcomeBox = ({usuario}) => {
               <p>Fãs</p>
               <div style={{ display: 'flex' }}>
               <img src="https://alurakut.vercel.app/icons/star.svg"/>
-              <span style={{ color: '#2E7BB4', marginLeft: '0.5rem' }}>100</span>
+              <span style={{ color: '#2E7BB4', marginLeft: '0.5rem' }}>0</span>
               </div>
             </ItemPerfil>
             <ItemPerfil>
@@ -92,7 +92,7 @@ const WelcomeBox = ({usuario}) => {
               <div style={{ display: 'flex' }}>
                 <img src="https://alurakut.vercel.app/icons/smile.svg"/>
                 <img src="https://alurakut.vercel.app/icons/smile.svg"/>
-                <img src="https://alurakut.vercel.app/icons/smile.svg" style={{ opacity: '60%'}}/>
+                <img src="https://alurakut.vercel.app/icons/smile.svg"/>
               </div>
             </ItemPerfil>
             <ItemPerfil>
@@ -122,7 +122,7 @@ const AmizadesBox = ({dados}) => {
           <h3 style={{ fontWeight: 'bold', fontSize: '16px' }}>Meus amigos <span style={{ color: '#2E7BB4' }}>({dados != undefined ? dados.length : 0})</span></h3>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {dados != undefined ? dados.map( pessoa => (
-              <CardPessoa key={pessoa.login} imagem={pessoa.avatar_url} nome={pessoa.login}/>
+              <CardPessoa key={pessoa.nome} imagem={pessoa.avatar_url} nome={pessoa.nome}/>
           )) : undefined}
           </div>
           <p style={{ fontWeight: 'bold', fontSize: '14px', color: '#2E7BB4', marginTop: '1rem'}}>Ver todos</p>
@@ -144,18 +144,24 @@ const ComunidadesBox = ({comunidades}) => {
 
 export default function Home(props) {
   const usuario = JSON.parse(props.usuario)
-  const [dados, setDados] = useState([])
+  //const [dados, setDados] = useState([])
   const [comunidades, setComunidade] = useState([])
+  const dados = [
+    {
+      nome: 'John',
+      avatar_url: 'http://localhost:3002/images/minha-foto.jpeg'
+    }
+  ]
 
   useEffect(()=>{
-    axios.get(`https://api-orkut-82545.herokuapp.com/${usuario.slug}`)
+    /* axios.get(`https://api-orkut-82545.herokuapp.com/${usuario.slug}`)
         .then( res => {
           setDados(res.data.user.amigos)
           console.log(res.data.user.amigos)
         })
         .catch(()=> {
           console.log('erro ao se conectar')
-        })
+        }) */
     
     // comunidades
 
