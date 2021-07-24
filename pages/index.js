@@ -12,7 +12,7 @@ import ItemPerfil from '../src/components/ItemPerfil';
 export const ProfileSideBar = ({usuario}) => {
   return (
     <Box>
-          <img src="https://github.com/JoaoAlves92.png" width="300px" height="300px"/>
+          <img src={usuario.avatar || 'https://alurakut.vercel.app/default_profile.svg'} width="300px" height="300px"/>
           <div style={{ borderTop: '1px solid #ECF2FA', borderBottom: '1px solid #ECF2FA', marginTop: '1rem', paddingTop: '8px', paddingBottom: '8px'}}>
             <h2 style={{ color: '#2E7BB4', fontSize: '1rem' }}>{usuario.nome}</h2><br></br>
             <p style={{ color: '#999999', fontSize: '0.9rem'}}>Masculino,<br></br>solteiro(a),<br></br>Brasil</p>
@@ -119,11 +119,11 @@ const WelcomeBox = ({usuario}) => {
 const AmizadesBox = ({dados}) => {
   return (
     <Box>
-          <h3 style={{ fontWeight: 'bold', fontSize: '16px' }}>Meus amigos <span style={{ color: '#2E7BB4' }}>({dados.length})</span></h3>
+          <h3 style={{ fontWeight: 'bold', fontSize: '16px' }}>Meus amigos <span style={{ color: '#2E7BB4' }}>({dados != undefined ? dados.length : 0})</span></h3>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {dados.map( pessoa => (
+          {dados != undefined ? dados.map( pessoa => (
               <CardPessoa key={pessoa.login} imagem={pessoa.avatar_url} nome={pessoa.login}/>
-          ))}
+          )) : undefined}
           </div>
           <p style={{ fontWeight: 'bold', fontSize: '14px', color: '#2E7BB4', marginTop: '1rem'}}>Ver todos</p>
     </Box>
@@ -143,14 +143,15 @@ const ComunidadesBox = ({comunidades}) => {
 }
 
 export default function Home(props) {
-  const usuario = props.usuario
+  const usuario = JSON.parse(props.usuario)
   const [dados, setDados] = useState([])
   const [comunidades, setComunidade] = useState([])
 
   useEffect(()=>{
-    axios.get('https://api.github.com/users/JoaoAlves92/followers')
+    axios.get(`https://api-orkut-82545.herokuapp.com/${usuario.slug}`)
         .then( res => {
-          setDados(res.data)
+          setDados(res.data.user.amigos)
+          console.log(res.data.user.amigos)
         })
         .catch(()=> {
           console.log('erro ao se conectar')
@@ -178,8 +179,7 @@ export default function Home(props) {
 
   return (
     <>
-    <Nav>
-    </Nav>
+    <Nav usuario={usuario}/>
     <MainGrid>
       <div style={{ gridArea: 'Perfil' }} className="Profile">
         <ProfileSideBar usuario={usuario}/>

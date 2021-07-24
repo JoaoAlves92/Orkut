@@ -136,7 +136,7 @@ export default function LoginScreen() {
         <section className="formArea">
           <form className="box" onSubmit={ async (e) => {
               e.preventDefault()
-              await axios.post('http://localhost:3002/auth/autenticar',{
+              await axios.post('https://api-orkut-82545.herokuapp.com/auth/autenticar',{
                 email: usuario,
                 senha: senha
               }).then(res => {

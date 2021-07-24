@@ -75,7 +75,7 @@ const NavBar = styled.div`
     }
 `;
 
-const Nav = () => {
+const Nav = ({usuario}) => {
     const [state, setState] = useState({
         right: false
     });
@@ -109,7 +109,7 @@ const Nav = () => {
             </div>
             {/* responsivo */}
             <div className="desktop">
-            <p className="email">seuemail@email.com</p>
+            <p className="email">{usuario.email}</p>
             <p style={{ color: 'white', marginLeft: '1rem', marginRight: '1rem' }}>Sair</p>
             <div className="pesquisa">
                 <SearchIcon style={{ color: 'white', position: 'absolute', marginLeft: '0.5rem' }}/>
