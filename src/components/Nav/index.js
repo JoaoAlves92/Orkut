@@ -98,7 +98,7 @@ const Nav = ({usuario}) => {
             onClick={toggleDrawer('right', true)}
             />
             <Drawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)}>
-            <ProfileSideBar/>
+            <ProfileSideBar usuario={usuario}/>
             </Drawer>
             {/* lista no desktop */}
             <ul className="lista">

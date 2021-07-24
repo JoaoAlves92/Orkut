@@ -12,7 +12,7 @@ import ItemPerfil from '../src/components/ItemPerfil';
 export const ProfileSideBar = ({usuario}) => {
   return (
     <Box>
-          <img src={usuario.avatar || 'https://alurakut.vercel.app/default_profile.svg'} width="300px" height="300px"/>
+          <img src={usuario.avatar != undefined ? usuario.avatar : 'https://alurakut.vercel.app/default_profile.svg'} width="300px" height="300px"/>
           <div style={{ borderTop: '1px solid #ECF2FA', borderBottom: '1px solid #ECF2FA', marginTop: '1rem', paddingTop: '8px', paddingBottom: '8px'}}>
             <h2 style={{ color: '#2E7BB4', fontSize: '1rem' }}>{usuario.nome}</h2><br></br>
             <p style={{ color: '#999999', fontSize: '0.9rem'}}>Masculino,<br></br>solteiro(a),<br></br>Brasil</p>
