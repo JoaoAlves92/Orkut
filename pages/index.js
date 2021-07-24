@@ -149,7 +149,7 @@ export default function Home(props) {
   const dados = [
     {
       nome: 'John',
-      avatar_url: 'http://localhost:3002/images/minha-foto.jpeg'
+      avatar_url: 'http://api-orkut-82545.herokuapp.com/images/minha-foto.jpeg'
     }
   ]
 
