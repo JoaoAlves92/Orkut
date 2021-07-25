@@ -43,6 +43,12 @@ const Estilo = styled.div`
         background-color: #2F4A71;
         cursor: pointer;
     }
+
+    select {
+        border: 1px solid #C5C6CA;
+        padding: 13px 16px;
+        border-radius: 8px;
+    }
 `;
 
 export default function CadastroScreen(){
@@ -50,22 +56,25 @@ export default function CadastroScreen(){
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+    const [status, setStatus] = useState(['solteiro(a)'])
 
     return(
         <Estilo>
-            <Logo className="img-logo">Orkut</Logo>
+            <Logo className="img-logo">Orkut</Logo> <br></br>
             <form onSubmit={(e) => {
                 e.preventDefault()
                 axios.post('https://api-orkut-82545.herokuapp.com/auth/cadastro', {
                     nome: nome,
                     email: email,
-                    senha: senha
+                    senha: senha,
+                    statusRelacionamento: status
                 })
                     .then(res => {
                         router.push('/login')
                     })
             }}>
                 <h2>Cadastre-se aqui</h2>
+                <br></br>
                 <input
                     value={nome}
                     placeholder="Nome"
@@ -92,6 +101,15 @@ export default function CadastroScreen(){
                     }}
                 />
                 <p style={{ visibility: 'hidden' }}>mensagem escondida</p>
+
+                <select name="statusRelacionamento" defaultValue={status} onChange={
+                    (e) => setStatus(e.target.value)
+                    }>
+                    <option selected value="solteiro(a)">solteiro(a)</option>
+                    <option value="em um relacionamento sério">em um relacionamento sério</option>
+                    <option value="casado(a)">casado(a)</option>
+                    <option value="enrolado">enrolado</option>
+                </select> <br></br>
                 <button type="submit">
                     Cadastrar
                 </button>
