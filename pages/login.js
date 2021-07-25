@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Logo from '../src/components/Logo';
@@ -121,6 +121,10 @@ export default function LoginScreen() {
   const router = useRouter(); 
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
+
+  useEffect(() => {
+    alert(`email: teste@email.com \nsenha: senha \npara testar o orkut!`)
+  }, [])
 
   return (
     <Estilo as="main">
