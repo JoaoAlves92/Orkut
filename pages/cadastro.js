@@ -56,7 +56,7 @@ export default function CadastroScreen(){
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const [status, setStatus] = useState(['solteiro(a)'])
+    const [status, setStatus] = useState('solteiro(a)')
 
     return(
         <Estilo>
