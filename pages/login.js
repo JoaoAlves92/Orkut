@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Logo from '../src/components/Logo';
 import axios from 'axios';
 import { setCookie } from 'nookies';
+import { Spinner } from "react-activity";
+import "react-activity/dist/Spinner.css";
 
 const Estilo = styled.div`
     width: 100%;
@@ -79,6 +81,12 @@ const Estilo = styled.div`
         text-decoration: none;
     }
 
+    .buttonLogin {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     @media (min-width: 860px){
         max-width: 1110px;
         margin: 0px auto;
@@ -121,6 +129,7 @@ export default function LoginScreen() {
   const router = useRouter(); 
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     alert(`email: teste@email.com \nsenha: senha \npara testar o orkut!`)
@@ -139,6 +148,7 @@ export default function LoginScreen() {
 
         <section className="formArea">
           <form className="box" onSubmit={ async (e) => {
+              setIsLoading(true)
               e.preventDefault()
               await axios.post('https://api-orkut-82545.herokuapp.com/auth/autenticar',{
                 email: usuario,
@@ -148,13 +158,10 @@ export default function LoginScreen() {
                   maxAge: 86400 * 7,
                   path: '/'
                 })
-                setCookie(null, 'USER', JSON.stringify(res.data.user), {
-                  maxAge: 86400 * 7,
-                  path: '/'
-                })
-                console.log(res.data.user)
+                setIsLoading(false)
                 router.push('/')
               }).catch(erro => {
+                setIsLoading(false)
                 console.log(erro)
               })
               //router.push('/')
@@ -179,8 +186,10 @@ export default function LoginScreen() {
                 }}
             />
             <p style={{ visibility: 'hidden' }}>mensagem escondida</p>
-            <button type="submit">
-              Login
+
+            
+            <button type="submit" className='buttonLogin'>
+              { isLoading ? <Spinner color='#fff' size={12} /> : 'Entrar' }
             </button>
           </form>
 

@@ -8,6 +8,7 @@ import Botao from '../src/components/Botao';
 import Input from '../src/components/Input';
 import ItemPerfil from '../src/components/ItemPerfil';
 import Post from '../src/components/Post';
+import axios from 'axios';
 
 export const ProfileSideBar = ({usuario}) => {
   return (
@@ -143,7 +144,7 @@ const ComunidadesBox = ({comunidades}) => {
 }
 
 export default function Home(props) {
-  const usuario = JSON.parse(props.usuario)
+  const usuario = props.usuario //JSON.parse(props.usuario)
   //const [dados, setDados] = useState([])
   const [comunidades, setComunidade] = useState([])
   const dados = [
@@ -222,11 +223,24 @@ export default function Home(props) {
 
 export async function getServerSideProps(context) {
   const cookies = parseCookies(context)
-  const user = cookies.USER
+  axios.defaults.timeout = 4000;
+  let validUser = undefined;
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${cookies.TOKEN}`,
+      "Content-type": "application/json"
+    }
+  };
+  const data = {}
 
-  if (cookies.TOKEN) {
+  await axios.post('https://api-orkut-82545.herokuapp.com/auth/me', data, config,)
+  .then((res) => {
+          validUser = res.data.user
+  }).catch(e => console.log(e))
+
+  if (validUser) {
     return {
-      props: {token: cookies.TOKEN || null, usuario: user || null} // will be passed to the page component as props
+      props: {token: cookies.TOKEN || null, usuario: validUser || null} // will be passed to the page component as props
     }
   } else {
     context.res.writeHead(302, { Location: '/login' });
