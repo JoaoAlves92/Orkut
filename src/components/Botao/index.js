@@ -8,6 +8,7 @@ const BotaoStyle = styled.button`
     border: none;
     border-radius: 8px;
     margin-right: 1rem;
+    cursor: pointer;
 
     ${({ active }) => active && `
         background-color: #6F92BB;
@@ -17,7 +18,7 @@ const BotaoStyle = styled.button`
 
 export default function Botao({mensagem, active}){
     return(
-        <BotaoStyle active={active}>
+        <BotaoStyle active={active} onClick={() => alert('funcionou aqui')}>
             {mensagem}
         </BotaoStyle>
     );

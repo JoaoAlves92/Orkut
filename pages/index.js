@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { parseCookies } from 'nookies';
 import MainGrid from '../src/components/MainGrid';
 import Box from '../src/components/Box'
@@ -8,6 +7,7 @@ import CardPessoa from '../src/components/CardPessoa';
 import Botao from '../src/components/Botao';
 import Input from '../src/components/Input';
 import ItemPerfil from '../src/components/ItemPerfil';
+import Post from '../src/components/Post';
 
 export const ProfileSideBar = ({usuario}) => {
   return (
@@ -197,12 +197,17 @@ export default function Home(props) {
         <Box>
           <p style={{ color: '#333333', fontSize: '18px', fontWeight: 'normal' }}>O que você deseja fazer?</p><br></br>
           <div style={{ display: 'flex', overflow: 'hidden'}}>
-          <Botao mensagem="Criar comunidade" active></Botao>
+          <Botao mensagem="Criar um post" active></Botao>
           <Botao mensagem="Escrever depoimento"></Botao>
           <Botao mensagem="Deixar um scrap"></Botao>
           </div>
-          <Input placeholder="Qual vai ser o nome da sua comunidade?"></Input>
+          <Input placeholder="Escreva aqui"></Input>
+          <Input placeholder="Insira uma url para a imagem (opcional)"></Input>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', marginTop: '1rem'}}>
+            <Botao mensagem="Postar" active></Botao>
+          </div>
         </Box> <br></br>
+        <Post post="post" usuario={usuario}/> <br></br>
       </div>
 
       <div style={{ gridArea: 'Relacionamentos' }}>

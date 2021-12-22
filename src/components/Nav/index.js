@@ -12,9 +12,10 @@ const NavBar = styled.div`
     background-color: #308BC5;
     width: 100%;
     padding: 4px 16px;
-    position: sticky;
+    position: fixed;
     display: flex;
     justify-content: space-between;
+    z-index: 999;
 
     .desktop {
         display: none;
@@ -99,6 +100,7 @@ const Nav = ({usuario}) => {
             />
             <Drawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)}>
             <ProfileSideBar usuario={usuario}/>
+            <p style={{ color: 'red', fontSize: '1rem', fontWeight: 'bold', marginLeft: '1rem' }}>Sair</p>
             </Drawer>
             {/* lista no desktop */}
             <ul className="lista">

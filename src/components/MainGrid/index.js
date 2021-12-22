@@ -6,6 +6,7 @@ const MainGrid = styled.main`
   padding: 16px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 4rem;
 
   .Profile {
     display: none;
