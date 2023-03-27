@@ -150,7 +150,7 @@ export default function Home(props) {
   const dados = [
     {
       nome: 'John',
-      avatar_url: 'https://api-orkut-82545.herokuapp.com/images/minha-foto.jpeg'
+      avatar_url: 'https://api-orkut.vercel.app/images/minha-foto.jpeg'
     }
   ]
 
@@ -233,7 +233,7 @@ export async function getServerSideProps(context) {
   };
   const data = {}
 
-  await axios.post('https://api-orkut-82545.herokuapp.com/auth/me', data, config,)
+  await axios.post('https://api-orkut.vercel.app/auth/me', data, config,)
   .then((res) => {
           validUser = res.data.user
   }).catch(e => console.log(e))

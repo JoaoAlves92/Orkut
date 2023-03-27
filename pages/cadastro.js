@@ -63,7 +63,7 @@ export default function CadastroScreen(){
             <Logo className="img-logo">Orkut</Logo> <br></br>
             <form onSubmit={(e) => {
                 e.preventDefault()
-                axios.post('https://api-orkut-82545.herokuapp.com/auth/cadastro', {
+                axios.post('https://api-orkut.vercel.app/auth/cadastro', {
                     nome: nome,
                     email: email,
                     senha: senha,

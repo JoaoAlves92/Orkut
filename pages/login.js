@@ -150,7 +150,7 @@ export default function LoginScreen() {
           <form className="box" onSubmit={ async (e) => {
               setIsLoading(true)
               e.preventDefault()
-              await axios.post('https://api-orkut-82545.herokuapp.com/auth/autenticar',{
+              await axios.post('https://api-orkut.vercel.app/auth/autenticar',{
                 email: usuario,
                 senha: senha
               }).then(res => {
