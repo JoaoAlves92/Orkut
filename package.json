@@ -5,19 +5,28 @@
     "build": "next build",
     "start": "next start"
   },
+  "homepage": ".",
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": [
+    "src"
+  ],
   "dependencies": {
-    "@material-ui/core": "^4.12.1",
-    "@material-ui/icons": "^4.11.2",
-    "axios": "^0.21.1",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "axios": "^1.3.4",
     "datocms-client": "^3.4.11",
     "jsonwebtoken": "^8.5.1",
     "next": "latest",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
     "react-activity": "^2.1.1",
-    "react-dom": "^17.0.2",
-    "react-is": "^17.0.2",
-    "styled-components": "^5.2.3"
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "styled-components": "^5.3.9",
+    "styled-media-query": "^2.1.2",
+    "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0"
